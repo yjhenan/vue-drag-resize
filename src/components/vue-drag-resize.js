@@ -299,11 +299,11 @@ export default {
                 return;
             }
 
-            if (this.dragHandle && target.getAttribute('data-drag-handle') !== this._uid.toString()) {
+            if (this.dragHandle && target && target.getAttribute('data-drag-handle') !== this._uid.toString()) {
                 return;
             }
 
-            if (this.dragCancel && target.getAttribute('data-drag-cancel') === this._uid.toString()) {
+            if (this.dragCancel && target && target.getAttribute('data-drag-cancel') === this._uid.toString()) {
                 return;
             }
 
@@ -751,7 +751,7 @@ export default {
 
         x: {
             handler(newVal, oldVal) {
-                if (this.stickDrag || this.bodyDrag || (newVal === this.left)) {
+                if (this.stickDrag || this.bodyDrag || Math.abs(newVal - this.left) < 1) {
                     return;
                 }
 
@@ -768,7 +768,7 @@ export default {
 
         y: {
             handler(newVal, oldVal) {
-                if (this.stickDrag || this.bodyDrag || (newVal === this.top)) {
+                if (this.stickDrag || this.bodyDrag || Math.abs(newVal - this.top) < 1) {
                     return;
                 }
 
@@ -785,7 +785,7 @@ export default {
 
         w: {
             handler(newVal, oldVal) {
-                if (this.stickDrag || this.bodyDrag || (newVal === this.width)) {
+                if (this.stickDrag || this.bodyDrag || Math.abs(newVal - this.width) < 1) {
                     return;
                 }
 
@@ -803,7 +803,7 @@ export default {
 
         h: {
             handler(newVal, oldVal) {
-                if (this.stickDrag || this.bodyDrag || (newVal === this.height)) {
+                if (this.stickDrag || this.bodyDrag || Math.abs(newVal - this.height) < 1) {
                     return;
                 }
 
