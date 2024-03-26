@@ -1,6 +1,7 @@
 import { defineConfig } from "rollup"
 import terser from '@rollup/plugin-terser'
-import vue from 'rollup-plugin-vue'
+import vue from '@vitejs/plugin-vue'
+import styles from 'rollup-plugin-styles'
 
 export default defineConfig({
     input: { 'vue-drag-resize': "./src/index.js"},
@@ -19,13 +20,8 @@ export default defineConfig({
     ]
     ,
     plugins: [
-        vue({
-            css: true,
-            compileTemplate: true,
-            template: {
-                // optimizeSSR: true,
-            }
-        }),
+        vue(),
+        styles({mode:"inject"}),
         terser()
     ]
 })
